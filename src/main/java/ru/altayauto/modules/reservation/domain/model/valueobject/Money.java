@@ -9,9 +9,9 @@ import java.math.BigDecimal;
 public record Money(@NonNull BigDecimal value) {
     public Money{
         if(BigDecimal.ZERO.compareTo(value) > 0)
-            throw new NumberLessThanZeroException();
+            throw new NumberLessThanZeroException("Денежные единицы не могут быть менее 0");
         if(value.scale() > 2 || value.scale() < 0)
-            throw new DecimalScaleOutOfRangeException();
+            throw new DecimalScaleOutOfRangeException("Денежные единицы не могут иметь значение меньше копеек, верный формат 1.99 ");
     }
 
     @Override

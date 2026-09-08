@@ -6,7 +6,7 @@ import ru.altayauto.modules.catalogue.domain.model.valueobject.Tag;
 import ru.altayauto.modules.catalogue.domain.model.valueobject.Title;
 import ru.altayauto.modules.shared.service.ICommand;
 
-public record SearchAutosByInfoQuery(
+public record SearchAutosRangeByInfoQuery(
         @Nullable Title[] producers,
         @Nullable Title[] models,
         @Nullable Title[] transmissions,
@@ -14,10 +14,12 @@ public record SearchAutosByInfoQuery(
         @Nullable PositiveDecimalWithHundredths minEnginePower,
         @Nullable PositiveDecimalWithHundredths maxEngineVolume,
         @Nullable PositiveDecimalWithHundredths maxEnginePower,
-        @Nullable Tag[] tags
+        @Nullable Tag[] tags,
+        int size,
+        int offset
 ) implements ICommand {
     @Override
     public String getName() {
-        return "SearchAutosByInfoQuery";
+        return "SearchAutosRangeByInfoQuery";
     }
 }

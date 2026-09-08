@@ -11,13 +11,13 @@ public class Auto{
     private AutoInfo info;
     private final Set<Tag> tagList;
     private final Set<ImagePath> images;
-    private Title description;
+    private Description description;
 
-    public Auto(
+    private Auto(
         UUID id,
         GovernmentRegistrationNumber governmentRegistrationNumber,
         AutoInfo info,
-        Title description,
+        Description description,
         Set<Tag> tagList,
         Set<ImagePath> images
     ){
@@ -33,7 +33,7 @@ public class Auto{
             UUID id,
             GovernmentRegistrationNumber governmentRegistrationNumber,
             AutoInfo info,
-            Title description
+            Description description
     ){
         this(id,governmentRegistrationNumber,info,description,new HashSet<>(),new HashSet<>());
     }
@@ -46,62 +46,55 @@ public class Auto{
         return governmentRegistrationNumber;
     }
 
-    public Auto changeGovernmentRegistrationNumber(GovernmentRegistrationNumber governmentRegistrationNumber){
+    public void changeGovernmentRegistrationNumber(GovernmentRegistrationNumber governmentRegistrationNumber){
         if(!governmentRegistrationNumber.equals(this.governmentRegistrationNumber))
             this.governmentRegistrationNumber = governmentRegistrationNumber;
-        return this;
     }
 
     public AutoInfo getInfo() {
         return info;
     }
 
-    public Auto editInfo(AutoInfo info){
+    public void editInfo(AutoInfo info){
         if(!info.equals(this.info))
             this.info = info;
-        return this;
     }
 
-    public Title getDescription(){
+    public Description getDescription(){
         return this.description;
     }
 
-    public Auto changeDescription(Title description){
+    public void changeDescription(Description description){
         if(!this.description.equals(description))
             this.description = description;
-        return this;
     }
 
     public Set<Tag> getTagList() {
         return Set.copyOf(tagList);
     }
 
-    public Auto addTag(Tag tag){
+    public void addTag(Tag tag){
         if(!tagList.add(tag))
             throw new AutoTagException.AlreadyLinked();
-        return this;
     }
 
-    public Auto removeTag(Tag tag){
+    public void removeTag(Tag tag){
         if(!tagList.remove(tag))
             throw new AutoTagException.NotLinked();
-        return this;
     }
 
     public Set<ImagePath> getImages() {
         return Set.copyOf(images);
     }
 
-    public Auto addImage(ImagePath imagePath){
+    public void addImage(ImagePath imagePath){
         if(!images.add(imagePath))
             throw new ImagePathException.AlreadyLinked();
-        return this;
     }
 
-    public Auto removeTag(ImagePath imagePath){
+    public void removeImage(ImagePath imagePath){
         if(!images.remove(imagePath))
             throw new ImagePathException.NotLinked();
-        return this;
     }
 
     @Override

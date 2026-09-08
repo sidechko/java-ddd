@@ -9,9 +9,9 @@ import java.math.BigDecimal;
 public record PositiveDecimalWithHundredths(@NonNull BigDecimal value) {
     public PositiveDecimalWithHundredths {
         if(BigDecimal.ZERO.compareTo(value) > 0)
-            throw new NumberLessThanZeroException();
+            throw new NumberLessThanZeroException("Число может быть только положительным");
         if(value.scale() > 2 || value.scale() < 0)
-            throw new DecimalScaleOutOfRangeException();
+            throw new DecimalScaleOutOfRangeException("Число не может иметь доли менее сотых");
     }
 
     @Override
